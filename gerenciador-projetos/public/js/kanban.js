@@ -190,6 +190,75 @@ function suggestCommitPrefix(story) {
   return `${story.id}:`;
 }
 
+const GIT_REPOS_LS_KEY = 'kickoff-used-git-repos';
+
+/** Extrai base do repositório (ex.: https://github.com/org/repo) de URLs Git comuns. */
+function extractGitRepoBase(url) {
+  try {
+    const u = new URL(String(url).trim());
+    const host = u.hostname.toLowerCase();
+    const parts = u.pathname.split('/').filter(Boolean);
+    if ((host === 'github.com' || host === 'www.github.com') && parts.length >= 2) {
+      return `https://github.com/${parts[0]}/${parts[1]}`;
+    }
+    if (host.includes('gitlab') && parts.length >= 2) {
+      return `${u.origin}/${parts[0]}/${parts[1]}`;
+    }
+  } catch { /* URL inválida */ }
+  return null;
+}
+
+function repoDisplayName(base) {
+  try {
+    const parts = new URL(base).pathname.split('/').filter(Boolean);
+    if (parts.length >= 2) return `${parts[0]}/${parts[1]}`;
+  } catch { /* ignore */ }
+  return base;
+}
+
+function loadStoredGitRepos() {
+  try {
+    const raw = localStorage.getItem(GIT_REPOS_LS_KEY);
+    const list = raw ? JSON.parse(raw) : [];
+    return Array.isArray(list) ? list.filter((r) => typeof r === 'string' && r.startsWith('http')) : [];
+  } catch {
+    return [];
+  }
+}
+
+function rememberGitRepo(url) {
+  const base = extractGitRepoBase(url);
+  if (!base) return;
+  const next = [base, ...loadStoredGitRepos().filter((r) => r !== base)].slice(0, 20);
+  localStorage.setItem(GIT_REPOS_LS_KEY, JSON.stringify(next));
+}
+
+/** Repositórios únicos já usados em links de qualquer história + localStorage. */
+function collectUsedGitRepos() {
+  const seen = new Set();
+  const out = [];
+  const add = (base) => {
+    if (base && !seen.has(base)) {
+      seen.add(base);
+      out.push(base);
+    }
+  };
+  for (const r of loadStoredGitRepos()) add(r);
+  for (const s of stories) {
+    for (const link of s.links || []) add(extractGitRepoBase(link.url));
+  }
+  return out.sort((a, b) => repoDisplayName(a).localeCompare(repoDisplayName(b)));
+}
+
+/** Monta URL completa a partir da base do repo, tipo e label (branch/PR). */
+function buildGitUrl(repoBase, type, label) {
+  const base = String(repoBase).replace(/\/$/, '');
+  const lab = String(label || '').trim();
+  if (type === 'branch' && lab) return `${base}/tree/${lab}`;
+  if (type === 'pr' && lab) return `${base}/pull/${lab.replace(/^#/, '')}`;
+  return base;
+}
+
 // Recarrega todas as histórias do servidor e redesenha o board.
 // Usado após criar/remover tarefas-filhas, quando o parent de outras pode mudar.
 async function reloadStories() {
@@ -685,7 +754,7 @@ function renderDetail(story) {
     dangerZone(story),
   ]);
 
-  openModal(story.id, body, { subtitle: titleOf(story), size: 'lg' });
+  openModal(story.id, body, { subtitle: titleOf(story), variant: 'drawer' });
 }
 
 // Rodapé do detalhe: arquivar/restaurar e excluir.
@@ -964,6 +1033,28 @@ function linksSection(story) {
     placeholder: 'https://github.com/SUA-ORG/SEU-REPO/tree/feature/...',
   });
 
+  const applyRepoToUrl = (repoBase) => {
+    if (!repoBase) return;
+    const label = labelInput.value.trim() || suggestBranchName(story);
+    urlInput.value = buildGitUrl(repoBase, typeVal, label);
+  };
+
+  const usedRepos = collectUsedGitRepos();
+  const repoPickerRow = usedRepos.length
+    ? el('div', { class: 'mb-2' }, [
+        fieldLabel('Repositórios já usados'),
+        createSelect({
+          size: 'sm',
+          value: null,
+          allowEmpty: true,
+          emptyLabel: 'Selecionar repositório…',
+          placeholder: 'Selecionar repositório…',
+          options: usedRepos.map((url) => ({ value: url, label: repoDisplayName(url), hint: url })),
+          onChange: (v) => { if (v) applyRepoToUrl(v); },
+        }).root,
+      ])
+    : null;
+
   const fillBranch = el('button', {
     type: 'button',
     class: 'text-xs px-2 py-1 rounded-md border border-slate-300 text-slate-600 hover:border-indigo-400 hover:text-indigo-700 whitespace-nowrap',
@@ -972,6 +1063,8 @@ function linksSection(story) {
   fillBranch.addEventListener('click', () => {
     labelInput.value = suggestBranchName(story);
     if (typeSelect.querySelector) typeVal = 'branch';
+    const base = extractGitRepoBase(urlInput.value);
+    if (base) urlInput.value = buildGitUrl(base, 'branch', labelInput.value);
   });
 
   const addLink = async () => {
@@ -980,6 +1073,7 @@ function linksSection(story) {
     if (!url) { showToast('cole a URL do GitHub', 'error'); return; }
     try {
       applyUpdate(await api.addLink(story.id, { type: typeVal, label, url }));
+      rememberGitRepo(url);
       labelInput.value = '';
       urlInput.value = '';
       showToast('link adicionado');
@@ -1014,6 +1108,7 @@ function linksSection(story) {
       el('div', { class: 'w-full sm:w-28 shrink-0' }, typeSelect),
       labelInput,
     ]),
+    repoPickerRow,
     el('div', { class: 'flex flex-col sm:flex-row gap-2' }, [
       urlInput,
       el('div', { class: 'flex gap-2 shrink-0' }, [fillBranch, addBtn]),

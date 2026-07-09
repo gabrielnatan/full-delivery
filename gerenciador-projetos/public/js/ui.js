@@ -1,4 +1,4 @@
-// Helpers de UI compartilhados: criação de elementos, modal, toast, badges.
+// Helpers de UI compartilhados: criação de elementos, modal/drawer, toast, badges.
 
 export function el(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);
@@ -20,16 +20,86 @@ export function el(tag, attrs = {}, children = []) {
   return node;
 }
 
-// ---- Modal reutilizável ----
+// ---- Modal / drawer reutilizável ----
 const overlay = document.getElementById('modal-overlay');
+const modal = document.getElementById('modal');
+const modalHeader = modal.querySelector('[data-modal-header]');
 const modalTitle = document.getElementById('modal-title');
 const modalSubtitle = document.getElementById('modal-subtitle');
 const modalBody = document.getElementById('modal-body');
 
-export function openModal(title, bodyNode, { subtitle = null, size = 'md' } = {}) {
-  const modal = document.getElementById('modal');
-  modal.classList.remove('max-w-3xl', 'max-w-4xl');
-  modal.classList.add(size === 'lg' ? 'max-w-4xl' : 'max-w-3xl');
+const VARIANT = {
+  modal: {
+    overlay: ['flex', 'items-start', 'justify-center', 'p-4', 'sm:p-6', 'overflow-y-auto'],
+    panel: ['w-full', 'rounded-2xl', 'my-4', 'sm:my-8', 'max-h-[calc(100vh-2rem)]'],
+    header: ['rounded-t-2xl'],
+    size: { md: 'max-w-3xl', lg: 'max-w-4xl' },
+  },
+  drawer: {
+    overlay: ['flex', 'items-stretch', 'justify-end', 'overflow-hidden'],
+    panel: [
+      'h-full',
+      'w-[80vw]',
+      'max-w-[2400px]',
+      'min-w-[min(100%,20rem)]',
+      'rounded-none',
+      'rounded-l-2xl',
+      'transition-transform',
+      'duration-300',
+      'ease-out',
+    ],
+    header: ['rounded-tl-2xl'],
+    size: { md: '', lg: '' },
+  },
+};
+
+const OVERLAY_CLASSES = [...new Set([
+  ...VARIANT.modal.overlay,
+  ...VARIANT.drawer.overlay,
+])];
+const PANEL_CLASSES = [...new Set([
+  ...VARIANT.modal.panel,
+  ...VARIANT.drawer.panel,
+  'max-w-3xl',
+  'max-w-4xl',
+  'translate-x-full',
+  'translate-x-0',
+])];
+const HEADER_CLASSES = [...new Set([
+  ...VARIANT.modal.header,
+  ...VARIANT.drawer.header,
+])];
+
+let currentVariant = 'modal';
+let closeTimer = null;
+
+function applyVariant(variant, size = 'md') {
+  currentVariant = variant;
+  const v = VARIANT[variant];
+
+  overlay.classList.remove(...OVERLAY_CLASSES);
+  overlay.classList.add(...v.overlay);
+
+  modal.classList.remove(...PANEL_CLASSES);
+  modal.classList.add(...v.panel);
+  const sizeClass = v.size[size] || v.size.md;
+  if (sizeClass) modal.classList.add(sizeClass);
+
+  modalHeader.classList.remove(...HEADER_CLASSES);
+  modalHeader.classList.add(...v.header);
+}
+
+function finishClose() {
+  overlay.classList.add('hidden');
+  modalBody.replaceChildren();
+  modalSubtitle.classList.add('hidden');
+  document.body.style.overflow = '';
+  modal.classList.remove('translate-x-full', 'translate-x-0');
+}
+
+export function openModal(title, bodyNode, { subtitle = null, size = 'md', variant = 'modal' } = {}) {
+  clearTimeout(closeTimer);
+  applyVariant(variant, size);
 
   modalTitle.textContent = title;
   if (subtitle) {
@@ -40,17 +110,37 @@ export function openModal(title, bodyNode, { subtitle = null, size = 'md' } = {}
     modalSubtitle.classList.add('hidden');
   }
   modalBody.replaceChildren(bodyNode);
-  overlay.classList.remove('hidden');
-  overlay.classList.add('flex');
+
+  const wasHidden = overlay.classList.contains('hidden');
+
+  if (variant === 'drawer') {
+    if (wasHidden) {
+      modal.classList.add('translate-x-full');
+      overlay.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          modal.classList.remove('translate-x-full');
+          modal.classList.add('translate-x-0');
+        });
+      });
+    } else {
+      overlay.classList.remove('hidden');
+    }
+  } else {
+    overlay.classList.remove('hidden');
+  }
+
   document.body.style.overflow = 'hidden';
 }
 
 export function closeModal() {
-  overlay.classList.add('hidden');
-  overlay.classList.remove('flex');
-  modalBody.replaceChildren();
-  modalSubtitle.classList.add('hidden');
-  document.body.style.overflow = '';
+  if (currentVariant === 'drawer' && !overlay.classList.contains('hidden')) {
+    modal.classList.remove('translate-x-0');
+    modal.classList.add('translate-x-full');
+    closeTimer = setTimeout(finishClose, 280);
+    return;
+  }
+  finishClose();
 }
 
 document.getElementById('modal-close').addEventListener('click', closeModal);

@@ -183,7 +183,10 @@
   margin-bottom: 0.35rem;
 }
 
-/* ---- Modal de tarefa ---- */
+/* ---- Modal de tarefa (drawer) ---- */
+#modal-body {
+  overscroll-behavior: contain;
+}
 .task-modal__meta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
