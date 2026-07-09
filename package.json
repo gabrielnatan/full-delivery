@@ -1,0 +1,20 @@
+{
+  "name": "full-delivery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Plataforma nacional de entregas — monorepo",
+  "scripts": {
+    "dev:gateway": "npm run dev -w api-gateway",
+    "build:all": "npm run build --workspaces --if-present",
+    "test:all": "npm run test --workspaces --if-present"
+  },
+  "workspaces": [
+    "services/*",
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielnatan/full-delivery.git"
+  },
+  "license": "ISC"
+}
