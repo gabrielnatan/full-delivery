@@ -3,7 +3,7 @@ created: '2026-07-09'
 updated: '2026-07-09'
 id: STORY-061
 type: story
-status: review
+status: done
 priority: high
 points: 1
 epic: mvp
@@ -47,6 +47,10 @@ comments:
 
       • npm run lint e format:check passam.
     at: '2026-07-09T20:17:43.670Z'
+  - id: merge7
+    author: Auto
+    text: 'Merge na main (2026-07-09): PR #7 mergeada — status → done.'
+    at: '2026-07-09T20:21:45.667Z'
 links:
   - id: da461fc2
     type: branch

@@ -3,7 +3,7 @@ created: '2026-07-09'
 updated: '2026-07-09'
 id: STORY-060
 type: story
-status: todo
+status: done
 priority: high
 points: 1
 epic: mvp
@@ -17,6 +17,11 @@ tags:
   - subtask
 assignees:
   - gabriel-natan
+comments:
+  - id: merge2
+    author: Auto
+    text: 'Merge na main (2026-07-09): PR #2 mergeada — status → done.'
+    at: '2026-07-09T20:21:45.663Z'
 ---
 # Configurar npm workspaces na raiz do monorepo
 
@@ -37,7 +42,7 @@ Subtask de **STORY-001**. Habilitar monorepo com workspaces para instalar depend
 5. Documentar no README que novos serviços entram automaticamente via glob `services/*`.
 
 ## Critérios de aceite
-- [ ] `package.json` raiz com workspaces configurados
-- [ ] Scripts `dev:gateway`, `build:all` e `test:all` definidos
-- [ ] `npm install` na raiz executa sem erro
+- [x] `package.json` raiz com workspaces configurados
+- [x] Scripts `dev:gateway`, `build:all` e `test:all` definidos
+- [x] `npm install` na raiz executa sem erro
 

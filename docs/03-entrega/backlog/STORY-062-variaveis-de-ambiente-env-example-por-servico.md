@@ -3,7 +3,7 @@ created: '2026-07-09'
 updated: '2026-07-09'
 id: STORY-062
 type: story
-status: review
+status: done
 priority: high
 points: 1
 epic: mvp
@@ -50,6 +50,10 @@ comments:
 
       PR: https://github.com/gabrielnatan/full-delivery/pull/4
     at: '2026-07-09T20:14:19.169Z'
+  - id: merge4
+    author: Auto
+    text: 'Merge na main (2026-07-09): PR #4 mergeada — status → done.'
+    at: '2026-07-09T20:21:45.669Z'
 ---
 # Variáveis de ambiente — .env.example por serviço
 
