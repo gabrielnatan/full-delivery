@@ -1,0 +1,12 @@
+{
+  "type": "growth-goal",
+  "required": ["id", "type", "member", "status"],
+  "fields": {
+    "id": { "type": "string", "pattern": "^GROWTH-\\d+$" },
+    "type": { "type": "string", "enum": ["growth-goal"] },
+    "member": { "type": "string" },
+    "status": { "type": "string", "enum": ["todo", "in-progress", "done"] },
+    "targetDate": { "type": ["string", "null"] },
+    "tags": { "type": "array" }
+  }
+}

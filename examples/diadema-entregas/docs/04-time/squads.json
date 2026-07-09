@@ -1,0 +1,36 @@
+{
+  "squads": [
+    {
+      "id": "core-platform",
+      "name": "Core Platform",
+      "mission": "API, pedidos, pagamentos e integrações com restaurantes",
+      "topology": "stream-aligned",
+      "services": [
+        "api",
+        "payments"
+      ],
+      "color": {
+        "bg": "#EEF2FF",
+        "text": "#4338CA",
+        "border": "#C7D2FE",
+        "accent": "#6366F1"
+      }
+    },
+    {
+      "id": "experiencia",
+      "name": "Experiência",
+      "mission": "Apps cliente e entregador — jornada ponta a ponta",
+      "topology": "stream-aligned",
+      "services": [
+        "app-cliente",
+        "app-entregador"
+      ],
+      "color": {
+        "bg": "#ECFDF5",
+        "text": "#047857",
+        "border": "#A7F3D0",
+        "accent": "#10B981"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "sprint",
+  "required": ["id", "type", "status"],
+  "fields": {
+    "id": { "type": "string", "pattern": "^SPRINT-\\d+$" },
+    "type": { "type": "string", "enum": ["sprint"] },
+    "status": { "type": "string", "enum": ["planned", "active", "done"] },
+    "start_date": { "type": ["string", "null"] },
+    "end_date": { "type": ["string", "null"] },
+    "tags": { "type": "array" }
+  }
+}

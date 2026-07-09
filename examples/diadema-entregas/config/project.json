@@ -1,0 +1,9 @@
+{
+  "name": "Diadema Entregas",
+  "slug": "diadema-entregas",
+  "org": "diadema-tech",
+  "description": "Marketplace local de delivery para Diadema e região — foco em restaurantes de bairro.",
+  "stack": "Backend: Go · API REST · Frontend: Flutter · Banco: PostgreSQL",
+  "createdAt": "2026-06-15",
+  "onboarded": true
+}

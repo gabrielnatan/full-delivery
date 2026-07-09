@@ -1,0 +1,59 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kickoff — Gerenciador de Projetos</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/custom.css" />
+
+<div class="flex min-h-screen text-slate-800">
+  <!-- Sidebar -->
+  <aside class="w-64 shrink-0 bg-slate-900 text-slate-300 flex flex-col">
+    <div class="px-5 py-4 border-b border-slate-700/60">
+      <!-- Preenchido em runtime a partir de config/project.json -->
+      <div id="project-name" class="text-white font-semibold text-lg leading-tight">Meu Projeto</div>
+      <div class="text-xs text-slate-400">gerenciador de projetos</div>
+    </div>
+
+    <nav id="nav" class="flex-1 overflow-y-auto py-3 text-sm">
+      <a href="#onboarding" class="nav-item" data-view="onboarding">✨ <span>Onboarding</span></a>
+      <a href="#search"    class="nav-item" data-view="search">🔎 <span>Buscar</span></a>
+      <a href="#kanban"    class="nav-item" data-view="kanban">📋 <span>Kanban</span></a>
+      <a href="#team"      class="nav-item" data-view="team">👥 <span>Time</span></a>
+      <a href="#squads"    class="nav-item" data-view="squads">🧩 <span>Squads</span></a>
+      <a href="#sprints"   class="nav-item" data-view="sprints">🗂️ <span>Sprints</span></a>
+      <a href="#roadmap"   class="nav-item" data-view="roadmap">🗺️ <span>Roadmap</span></a>
+      <a href="#okrs"      class="nav-item" data-view="okrs">🎯 <span>OKRs</span></a>
+      <a href="#personas"  class="nav-item" data-view="personas">👤 <span>Personas</span></a>
+      <a href="#decisions" class="nav-item" data-view="decisions">📜 <span>Decisões (ADR)</span></a>
+
+      <div class="px-5 pt-4 pb-1 text-[11px] uppercase tracking-wide text-slate-500">📄 Docs</div>
+      <div id="docs-menu" class="text-slate-400"></div>
+    </nav>
+
+    <div class="px-5 py-3 border-t border-slate-700/60 text-[11px] text-slate-500">
+      lê e escreve em <code class="text-slate-400">docs/</code>
+    </div>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <main class="flex-1 bg-slate-50 min-w-0">
+    <div id="view" class="p-8"></div>
+  </main>
+</div>
+
+<!-- Modal (reutilizável) -->
+<div id="modal-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-[2px] hidden items-start justify-center p-4 sm:p-6 overflow-y-auto z-50">
+  <div id="modal" class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full my-4 sm:my-8 max-h-[calc(100vh-2rem)] flex flex-col ring-1 ring-slate-200/80">
+    <div class="flex items-start justify-between gap-4 px-6 py-5 border-b border-slate-100 shrink-0 bg-gradient-to-b from-slate-50/80 to-white rounded-t-2xl">
+      <div class="min-w-0 flex-1">
+        <div id="modal-title" class="text-lg font-bold text-slate-900 tracking-tight"></div>
+        <div id="modal-subtitle" class="text-sm text-slate-500 mt-1 leading-snug hidden"></div>
+      </div>
+      <button id="modal-close" type="button" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" title="Fechar">✕</button>
+    </div>
+    <div id="modal-body" class="px-6 py-5 overflow-y-auto flex-1"></div>
+  </div>
+</div>
+
+<div id="toast" class="fixed bottom-5 right-5 hidden px-4 py-2 rounded-md shadow-lg text-sm text-white z-50"></div>
+
+<script type="module" src="/js/main.js"></script>

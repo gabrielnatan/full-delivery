@@ -1,0 +1,14 @@
+{
+  "type": "okr",
+  "required": ["id", "type", "status", "objective"],
+  "fields": {
+    "id": { "type": "string", "pattern": "^OKR-\\d+$" },
+    "type": { "type": "string", "enum": ["okr"] },
+    "status": { "type": "string", "enum": ["draft", "active", "done", "dropped"] },
+    "objective": { "type": "string" },
+    "period": { "type": ["string", "null"] },
+    "owner": { "type": ["string", "null"] },
+    "progress": { "type": "number" },
+    "tags": { "type": "array" }
+  }
+}

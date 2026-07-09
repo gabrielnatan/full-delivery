@@ -1,0 +1,61 @@
+{
+  "members": [
+    {
+      "id": "ana-silva",
+      "name": "Ana Silva",
+      "role": "tech-lead",
+      "seniority": "senior",
+      "squad": "core-platform",
+      "skills": [
+        "go",
+        "postgresql",
+        "liderança"
+      ],
+      "capacityPoints": 8,
+      "avatar": null,
+      "note": "Fundadora técnica"
+    },
+    {
+      "id": "bruno-costa",
+      "name": "Bruno Costa",
+      "role": "developer",
+      "seniority": "pleno",
+      "squad": "core-platform",
+      "skills": [
+        "go",
+        "redis"
+      ],
+      "capacityPoints": 10,
+      "avatar": null,
+      "note": null
+    },
+    {
+      "id": "carla-mendes",
+      "name": "Carla Mendes",
+      "role": "designer",
+      "seniority": "pleno",
+      "squad": "experiencia",
+      "skills": [
+        "figma",
+        "ux-research"
+      ],
+      "capacityPoints": 8,
+      "avatar": null,
+      "note": null
+    },
+    {
+      "id": "diego-oliveira",
+      "name": "Diego Oliveira",
+      "role": "developer",
+      "seniority": "junior",
+      "squad": "experiencia",
+      "skills": [
+        "flutter",
+        "dart"
+      ],
+      "capacityPoints": 8,
+      "avatar": null,
+      "note": "Primeiro app mobile"
+    }
+  ]
+}

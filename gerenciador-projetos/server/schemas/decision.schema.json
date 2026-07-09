@@ -1,0 +1,11 @@
+{
+  "type": "decision",
+  "required": ["id", "type", "status"],
+  "fields": {
+    "id": { "type": "string", "pattern": "^ADR-\\d+$" },
+    "type": { "type": "string", "enum": ["decision"] },
+    "status": { "type": "string", "enum": ["proposed", "accepted", "deprecated", "superseded"] },
+    "supersedes": { "type": ["string", "null"] },
+    "tags": { "type": "array" }
+  }
+}

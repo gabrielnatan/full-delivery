@@ -1,0 +1,12 @@
+{
+  "type": "one-on-one",
+  "required": ["id", "type", "member", "date"],
+  "fields": {
+    "id": { "type": "string", "pattern": "^1ON1-\\d+$" },
+    "type": { "type": "string", "enum": ["one-on-one"] },
+    "member": { "type": "string" },
+    "date": { "type": "string" },
+    "sentiment": { "type": ["string", "null"], "enum": ["positivo", "neutro", "negativo", null] },
+    "tags": { "type": "array" }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "story",
+  "required": ["id", "type", "status", "priority", "points", "epic"],
+  "fields": {
+    "id": { "type": "string", "pattern": "^STORY-\\d+$" },
+    "type": { "type": "string", "enum": ["story"] },
+    "status": { "type": "string", "enum": ["backlog", "todo", "in-progress", "review", "done", "cancelled"] },
+    "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+    "points": { "type": "number", "enum": [1, 2, 3, 5, 8, 13] },
+    "epic": { "type": "string" },
+    "sprint": { "type": ["string", "null"] },
+    "parent": { "type": ["string", "null"], "pattern": "^STORY-\\d+$" },
+    "kind": { "type": ["string", "null"], "enum": ["bug", "feature", "chore", "planning", "docs", "spike", "design", null] },
+    "squad": { "type": ["string", "null"] },
+    "assignees": { "type": "array" },
+    "tags": { "type": "array" },
+    "comments": { "type": "array" },
+    "attachments": { "type": "array" },
+    "links": { "type": "array" }
+  }
+}
