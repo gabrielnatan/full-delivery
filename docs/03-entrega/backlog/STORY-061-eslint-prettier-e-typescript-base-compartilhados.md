@@ -3,7 +3,7 @@ created: '2026-07-09'
 updated: '2026-07-09'
 id: STORY-061
 type: story
-status: done
+status: review
 priority: high
 points: 1
 epic: mvp
@@ -33,6 +33,18 @@ comments:
 
       • npm run lint e format:check passam (ainda sem .ts em services/).
     at: '2026-07-09T19:56:54.235Z'
+links:
+  - id: fd692f84
+    type: branch
+    label: feature/STORY-061-eslint-prettier-e-typescript-base-compartilhados
+    url: >-
+      https://github.com/gabrielnatan/full-delivery/tree/feature/STORY-061-eslint-prettier-e-typescript-base-compartilhados
+    at: '2026-07-09T20:08:00.449Z'
+  - id: 9f633e6c
+    type: pr
+    label: '3'
+    url: 'https://github.com/gabrielnatan/full-delivery/pull/3'
+    at: '2026-07-09T20:08:00.449Z'
 ---
 # ESLint, Prettier e TypeScript base compartilhados
 
