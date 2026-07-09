@@ -33,6 +33,63 @@ O template é **agnóstico de linguagem**. A escolha de stack (Node, Go, Rails, 
 4. PR: título `STORY-XXX — …`; registre os links Git no modal da história.
 5. Ao mergear, mova o status da história para **review**/**done**.
 
+### Finalizar uma história (checklist obrigatório para a IA)
+
+**Não marque a task como `done` só por ter implementado o código.** Antes de concluir,
+execute **toda** a sequência abaixo — uma história por branch/PR.
+
+1. **Branch dedicada** — sair de `main` (ou da base acordada) e criar:
+   ```bash
+   git checkout main && git pull
+   git checkout -b feature/STORY-XXX-slug-curto
+   ```
+   Nunca misturar arquivos de STORY-060 e STORY-061 na mesma branch, salvo se a task
+   pai explicitamente agrupar subtasks (raro).
+
+2. **Commit** — incluir **somente** o escopo da STORY-XXX:
+   ```bash
+   git add <arquivos da task>
+   git commit -m "$(cat <<'EOF'
+   STORY-XXX: descrição curta no imperativo.
+   EOF
+   )"
+   ```
+   Mensagem sempre começa com `STORY-XXX:`.
+
+3. **Push e Pull Request**:
+   ```bash
+   git push -u origin HEAD
+   gh pr create --title "STORY-XXX — Título legível" --body "$(cat <<'EOF'
+   ## Summary
+   - …
+
+   ## Test plan
+   - [ ] …
+
+   Relates to STORY-XXX
+   EOF
+   )"
+   ```
+
+4. **Vincular no card** — registrar na história (via API `POST /api/stories/:id/links` ou
+   `docsWriter`, **não** editar o `.md` à mão):
+   - link `branch` → URL `…/tree/feature/STORY-XXX-…`
+   - link `pr` → URL do Pull Request
+   - (opcional) link `commit` do commit principal
+
+5. **Status e revisão** — só então:
+   - marcar critérios de aceite no corpo da história;
+   - mover status para **`review`** (PR aberto) ou **`done`** (se já mergeado);
+   - adicionar comentário de revisão resumindo o que foi entregue e o link do PR.
+
+**Anti-padrões (não fazer):**
+- Marcar `done` com arquivos só locais / untracked / sem commit.
+- Deixar link `branch` apontando para a URL do repo sem `/tree/feature/…`.
+- Continuar na branch de outra STORY (ex.: implementar STORY-060 na branch da STORY-059).
+- Abrir PR sem push ou sem vincular o PR no card.
+
+Referência detalhada: `docs/05-ops/vinculo-git-tasks.md`.
+
 ## O gerenciador (planejador)
 - App local em `gerenciador-projetos/` (Node + Express + JS vanilla, sem build).
   Rodar: `cd gerenciador-projetos && npm install && npm run dev` (http://localhost:4001).
