@@ -45,6 +45,7 @@ Cada pilar corresponde a um "chapéu" de liderança:
 
 ## 🛠️ Operações
 - [Setup ambiente local](05-ops/setup-ambiente-local.md) — subir o planejador e o app.
+- [Padrão de código (lint/format)](05-ops/padrao-codigo-monorepo.md) — ESLint, Prettier e tsconfig na raiz.
 - [Vínculo Git ↔ tasks](05-ops/vinculo-git-tasks.md) — padrão de branch/commit e links.
 - [Ambientes](05-ops/environments.md) — local, staging, prod.
 - [Runbook](05-ops/runbook.md) — rodar local, deploy, troubleshooting.

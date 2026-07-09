@@ -2,9 +2,11 @@
 id: setup-ambiente-local
 type: guide
 status: active
-tags: [dev, setup]
-created: 2026-07-09
-updated: 2026-07-09
+tags:
+  - dev
+  - setup
+created: 2026-07-09T00:00:00.000Z
+updated: '2026-07-09'
 ---
 
 # Setup do ambiente local
@@ -46,8 +48,19 @@ Depois de escolher, documente aqui os comandos reais. Um esqueleto comum:
 - **Git** e **Node.js** (para o planejador).
 - Ferramentas da stack escolhida (a definir no ADR de stack).
 
+## 3. Padrão de código (monorepo)
+
+ESLint, Prettier e TypeScript na raiz — ver [padrao-codigo-monorepo.md](padrao-codigo-monorepo.md).
+
+```bash
+npm install   # na raiz do full-delivery
+npm run lint
+npm run format
+```
+
 ## Referências
 
+- [padrao-codigo-monorepo.md](padrao-codigo-monorepo.md) — ESLint, Prettier, tsconfig base
 - [runbook.md](runbook.md) — operação geral e troubleshooting
 - [../02-tecnico/tech-stack.md](../02-tecnico/tech-stack.md) — a stack e o porquê
 - [../02-tecnico/decisions/ADR-000-escolha-de-stack.md](../02-tecnico/decisions/ADR-000-escolha-de-stack.md)
