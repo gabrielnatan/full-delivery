@@ -1,9 +1,12 @@
+# CI temporariamente desabilitado para economizar minutos do GitHub Actions.
+# Para reativar: restaure os triggers em `on:` (push + pull_request) abaixo.
 name: CI
 
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+  # pull_request:
 
 jobs:
   planner:
