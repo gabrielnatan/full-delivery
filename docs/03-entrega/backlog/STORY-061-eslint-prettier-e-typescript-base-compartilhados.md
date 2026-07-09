@@ -3,7 +3,7 @@ created: '2026-07-09'
 updated: '2026-07-09'
 id: STORY-061
 type: story
-status: done
+status: review
 priority: high
 points: 1
 epic: mvp
@@ -33,6 +33,20 @@ comments:
 
       • npm run lint e format:check passam (ainda sem .ts em services/).
     at: '2026-07-09T19:56:54.235Z'
+  - id: rev06102
+    author: Auto
+    text: >-
+      Reaplicação na main (2026-07-09): PR #3 tinha mergeado na branch da
+      STORY-060, não na main.
+
+
+      • eslint.config.js, Prettier, tsconfig.base.json e scripts lint/format na
+      raiz.
+
+      • Guia docs/05-ops/padrao-codigo-monorepo.md
+
+      • npm run lint e format:check passam.
+    at: '2026-07-09T20:17:43.670Z'
 ---
 # ESLint, Prettier e TypeScript base compartilhados
 
