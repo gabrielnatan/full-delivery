@@ -18,12 +18,17 @@ tags:
 assignees:
   - gabriel-natan
 links:
-  - id: 1dcf6ec8
+  - id: cba0a21c
     type: branch
     label: feature/STORY-062-variaveis-de-ambiente-env-example-por-servico
     url: >-
       https://github.com/gabrielnatan/full-delivery/tree/feature/STORY-062-variaveis-de-ambiente-env-example-por-servico
-    at: '2026-07-09T20:13:12.618Z'
+    at: '2026-07-09T20:14:34.056Z'
+  - id: b9afef84
+    type: pr
+    label: '4'
+    url: 'https://github.com/gabrielnatan/full-delivery/pull/4'
+    at: '2026-07-09T20:14:34.056Z'
 comments:
   - id: rev06201
     author: Auto
@@ -41,6 +46,9 @@ comments:
       • Tabela de variáveis em docs/05-ops/setup-ambiente-local.md.
 
       • .env já estava no .gitignore global.
+
+
+      PR: https://github.com/gabrielnatan/full-delivery/pull/4
     at: '2026-07-09T20:14:19.169Z'
 ---
 # Variáveis de ambiente — .env.example por serviço
