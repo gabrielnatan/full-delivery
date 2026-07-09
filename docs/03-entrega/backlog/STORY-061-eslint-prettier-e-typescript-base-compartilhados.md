@@ -47,6 +47,18 @@ comments:
 
       • npm run lint e format:check passam.
     at: '2026-07-09T20:17:43.670Z'
+links:
+  - id: da461fc2
+    type: branch
+    label: feature/STORY-061-eslint-prettier-typescript
+    url: >-
+      https://github.com/gabrielnatan/full-delivery/tree/feature/STORY-061-eslint-prettier-typescript
+    at: '2026-07-09T20:18:00.057Z'
+  - id: 170fe47c
+    type: pr
+    label: '7'
+    url: 'https://github.com/gabrielnatan/full-delivery/pull/7'
+    at: '2026-07-09T20:18:00.058Z'
 ---
 # ESLint, Prettier e TypeScript base compartilhados
 
