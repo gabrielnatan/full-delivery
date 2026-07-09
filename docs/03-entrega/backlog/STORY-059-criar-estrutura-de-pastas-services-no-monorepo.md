@@ -35,10 +35,19 @@ comments:
 
       • packages/ criada na raiz (vazia, pronta para shared-events etc.).
 
-
-      Pendência fora do escopo desta subtask: commit com mensagem STORY-001
-      ainda não verificado.
+      • Branch e PR: feature/STORY-059-criar-estrutura-de-pastas-services-no-monorepo → PR #1.
     at: '2026-07-09T19:36:13.197Z'
+links:
+  - id: 6631ebb6
+    type: branch
+    label: feature/STORY-059-criar-estrutura-de-pastas-services-no-monorepo
+    url: 'https://github.com/gabrielnatan/full-delivery/tree/feature/STORY-059-criar-estrutura-de-pastas-services-no-monorepo'
+    at: '2026-07-09T19:42:32.881Z'
+  - id: pr059001
+    type: pr
+    label: 'PR #1 — STORY-059'
+    url: 'https://github.com/gabrielnatan/full-delivery/pull/1'
+    at: '2026-07-09T19:45:00.000Z'
 ---
 # Criar estrutura de pastas services/ no monorepo
 
