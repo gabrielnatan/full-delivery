@@ -69,8 +69,19 @@ Exemplos completos: `services/<nome>/.env.example` e [services/README.md](../../
 - **Docker** (Postgres local via Compose).
 - Ferramentas da stack: NestJS, React, Flutter conforme [tech-stack.md](../02-tecnico/tech-stack.md).
 
+## 3. Padrão de código (monorepo)
+
+ESLint, Prettier e TypeScript na raiz — ver [padrao-codigo-monorepo.md](padrao-codigo-monorepo.md).
+
+```bash
+npm install   # na raiz do full-delivery
+npm run lint
+npm run format
+```
+
 ## Referências
 
+- [padrao-codigo-monorepo.md](padrao-codigo-monorepo.md) — ESLint, Prettier, tsconfig base
 - [runbook.md](runbook.md) — operação geral e troubleshooting
 - [padrao-codigo-monorepo.md](padrao-codigo-monorepo.md) — ESLint, Prettier e TypeScript na raiz
 - [../02-tecnico/tech-stack.md](../02-tecnico/tech-stack.md) — stack e motivação
