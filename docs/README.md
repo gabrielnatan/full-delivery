@@ -9,7 +9,7 @@
 
 ## 📌 O que é
 
-_(Resumo de uma linha do produto — detalhes em [Visão do Produto](01-negocio/vision.md).)_
+**Full Delivery** — plataforma nacional de entregas que conecta estabelecimentos, entregadores e clientes com rede de coleta, hubs e rastreamento ponta a ponta. Detalhes em [Visão do Produto](01-negocio/vision.md).
 
 ## 🧭 Os 3 pilares
 
@@ -28,6 +28,7 @@ Cada pilar corresponde a um "chapéu" de liderança:
 
 ### 02 — Técnico (estruturar)
 - [Tech Stack](02-tecnico/tech-stack.md) — linguagem, framework, banco, infra e o porquê.
+- [Organização do Monorepo](02-tecnico/monorepo.md) — um repo, pastas por serviço, front e mobile.
 - [Arquitetura do Sistema](02-tecnico/system-architecture.md) — componentes e fluxos.
 - [Integrações](02-tecnico/integrations.md) — serviços externos e parceiros.
 - [Modelo de Dados](02-tecnico/data-model.md) — entidades e relacionamentos.

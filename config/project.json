@@ -1,9 +1,9 @@
 {
-  "name": "Meu Projeto",
-  "slug": "meu-projeto",
-  "org": "",
-  "description": "",
-  "stack": null,
-  "createdAt": null,
-  "onboarded": false
+  "name": "Full Delivery",
+  "slug": "full-delivery",
+  "org": "gabrielnatan",
+  "description": "Plataforma nacional de entregas que conecta estabelecimentos, entregadores e clientes com rede de coleta, hubs e rastreamento ponta a ponta.",
+  "stack": "Backend: Nestjs · Frontend: React e Flutter · Banco: Postgres",
+  "createdAt": "2026-07-09",
+  "onboarded": true
 }

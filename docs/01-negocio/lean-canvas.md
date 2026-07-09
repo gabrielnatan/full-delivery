@@ -1,37 +1,41 @@
 ---
+status: active
+updated: '2026-07-09'
 id: lean-canvas
 type: lean-canvas
-status: draft
-created: 2026-07-09
-updated: 2026-07-09
 tags: []
 ---
-
 # Lean Canvas
 
 ## Problema
-(os 1-3 principais problemas do cliente)
-
-## Segmentos de clientes
-(quem tem esse problema — link para personas)
-
-## Proposta de valor única
-(a mensagem clara de por que você é diferente e vale a atenção)
+1. Estabelecimentos não conseguem entregar em todo o Brasil com custo e prazo previsíveis.
+2. Clientes não confiam no status e na data de entrega de compras online.
+3. Entregadores não têm uma plataforma unificada para corridas de múltiplos vendedores.
 
 ## Solução
-(as 1-3 funcionalidades que resolvem os problemas acima)
+Plataforma nacional que orquestra coleta em postos/hubs, roteirização e última milha com entregadores independentes.
+
+## Proposta de valor única
+Entrega garantida com rastreamento e rede híbrida (hubs + entregadores locais), conectando qualquer estabelecimento a qualquer cliente no país.
+
+## Segmentos de clientes
+| Segmento | Quem é | Dor principal |
+|---|---|---|
+| Cliente final | Comprador online | Prazo incerto, falta de rastreio |
+| Estabelecimento | Loja, e-commerce, logista | Custo alto e cobertura limitada |
+| Entregador | Motorista, motoboy, van | Renda irregular, apps fragmentados |
 
 ## Canais
-(como você alcança os clientes)
+App cliente (React), app entregador (Flutter), portal/API para estabelecimentos, parcerias com hubs logísticos.
 
 ## Fontes de receita
-(como o negócio ganha dinheiro)
+Taxa por entrega, comissão sobre pedido, planos para estabelecimentos com volume.
 
-## Estrutura de custos
-(principais custos fixos e variáveis)
+## Estrutura de custo
+Infra cloud, pagamentos, suporte, hubs de coleta (parcerias), aquisição de entregadores e estabelecimentos.
 
 ## Métricas-chave
-(os números que dizem se está funcionando — ver metricas.md)
+Entregas concluídas no prazo, NPS cliente, entregadores ativos/semana, GMV.
 
 ## Vantagem injusta
-(o que não pode ser facilmente copiado)
+Rede de coleta + distribuição pensada para escala nacional desde o MVP, com squads donos de cada microserviço.

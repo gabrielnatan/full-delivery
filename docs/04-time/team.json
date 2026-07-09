@@ -1,3 +1,100 @@
 {
-  "members": []
+  "members": [
+    {
+      "id": "gabriel-natan",
+      "name": "Gabriel Natan",
+      "role": "tech-lead",
+      "seniority": "senior",
+      "discipline": "backend",
+      "squad": "plataforma",
+      "skills": ["nestjs", "arquitetura", "postgresql", "liderança"],
+      "capacityPoints": 8,
+      "avatar": null,
+      "note": "Dono do api-gateway e padrões de microserviços"
+    },
+    {
+      "id": "ana",
+      "name": "Ana",
+      "role": "developer",
+      "seniority": "pleno",
+      "discipline": "backend",
+      "squad": "identidade",
+      "skills": ["nestjs", "jwt", "postgresql"],
+      "capacityPoints": 10,
+      "avatar": null,
+      "note": "Dono do identity-service"
+    },
+    {
+      "id": "gerson",
+      "name": "Gerson",
+      "role": "developer",
+      "seniority": "pleno",
+      "discipline": "backend",
+      "squad": "estabelecimentos",
+      "skills": ["nestjs", "postgresql", "rest"],
+      "capacityPoints": 10,
+      "avatar": null,
+      "note": "Dono do merchant-service"
+    },
+    {
+      "id": "elton",
+      "name": "Elton",
+      "role": "developer",
+      "seniority": "pleno",
+      "discipline": "backend",
+      "squad": "pedidos",
+      "skills": ["nestjs", "eventos", "postgresql"],
+      "capacityPoints": 10,
+      "avatar": null,
+      "note": "Dono do order-service"
+    },
+    {
+      "id": "mark",
+      "name": "Mark",
+      "role": "developer",
+      "seniority": "pleno",
+      "discipline": "backend",
+      "squad": "logistica",
+      "skills": ["nestjs", "geolocalização", "postgresql"],
+      "capacityPoints": 10,
+      "avatar": null,
+      "note": "Dono do logistics-service"
+    },
+    {
+      "id": "beatriz",
+      "name": "Beatriz",
+      "role": "designer",
+      "seniority": "pleno",
+      "discipline": "product-design",
+      "squad": "app-cliente",
+      "skills": ["figma", "ux-research", "design-system"],
+      "capacityPoints": 8,
+      "avatar": null,
+      "note": "UX do app cliente (React)"
+    },
+    {
+      "id": "john",
+      "name": "John",
+      "role": "designer",
+      "seniority": "pleno",
+      "discipline": "product-design",
+      "squad": "app-entregador",
+      "skills": ["figma", "ux-mobile", "design-system"],
+      "capacityPoints": 8,
+      "avatar": null,
+      "note": "UX do app entregador (Flutter)"
+    },
+    {
+      "id": "joana",
+      "name": "Joana",
+      "role": "product",
+      "seniority": "senior",
+      "discipline": "product",
+      "squad": null,
+      "skills": ["discovery", "priorização", "métricas"],
+      "capacityPoints": 8,
+      "avatar": null,
+      "note": "Produto transversal — prioriza backlog entre squads"
+    }
+  ]
 }

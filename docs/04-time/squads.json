@@ -1,3 +1,108 @@
 {
-  "squads": []
+  "squads": [
+    {
+      "id": "plataforma",
+      "name": "Plataforma",
+      "mission": "API Gateway, contratos entre serviços, observabilidade e bootstrap do monorepo",
+      "topology": "enabling",
+      "services": ["api-gateway"],
+      "color": {
+        "bg": "#F1F5F9",
+        "text": "#334155",
+        "border": "#CBD5E1",
+        "accent": "#64748B"
+      }
+    },
+    {
+      "id": "identidade",
+      "name": "Identidade",
+      "mission": "Autenticação, autorização, perfis e gestão de usuários",
+      "topology": "stream-aligned",
+      "services": ["identity-service"],
+      "color": {
+        "bg": "#EEF2FF",
+        "text": "#4338CA",
+        "border": "#C7D2FE",
+        "accent": "#6366F1"
+      }
+    },
+    {
+      "id": "estabelecimentos",
+      "name": "Estabelecimentos",
+      "mission": "Cadastro de lojas, catálogo de produtos e gestão operacional do vendedor",
+      "topology": "stream-aligned",
+      "services": ["merchant-service"],
+      "color": {
+        "bg": "#FFF7ED",
+        "text": "#C2410C",
+        "border": "#FED7AA",
+        "accent": "#F97316"
+      }
+    },
+    {
+      "id": "pedidos",
+      "name": "Pedidos",
+      "mission": "Criação, ciclo de vida, status e rastreamento de pedidos",
+      "topology": "stream-aligned",
+      "services": ["order-service"],
+      "color": {
+        "bg": "#F5F3FF",
+        "text": "#6D28D9",
+        "border": "#DDD6FE",
+        "accent": "#8B5CF6"
+      }
+    },
+    {
+      "id": "logistica",
+      "name": "Logística",
+      "mission": "Entregadores, rotas, postos de coleta e centros de distribuição",
+      "topology": "stream-aligned",
+      "services": ["logistics-service"],
+      "color": {
+        "bg": "#ECFDF5",
+        "text": "#047857",
+        "border": "#A7F3D0",
+        "accent": "#10B981"
+      }
+    },
+    {
+      "id": "pagamentos",
+      "name": "Pagamentos",
+      "mission": "Checkout, split de pagamento e repasse a estabelecimentos e entregadores",
+      "topology": "stream-aligned",
+      "services": ["payment-service"],
+      "color": {
+        "bg": "#F0F9FF",
+        "text": "#0369A1",
+        "border": "#BAE6FD",
+        "accent": "#0EA5E9"
+      }
+    },
+    {
+      "id": "app-cliente",
+      "name": "App Cliente",
+      "mission": "Experiência de compra e acompanhamento de entrega para consumidores (React)",
+      "topology": "stream-aligned",
+      "services": ["client-app"],
+      "color": {
+        "bg": "#FDF2F8",
+        "text": "#BE185D",
+        "border": "#FBCFE8",
+        "accent": "#EC4899"
+      }
+    },
+    {
+      "id": "app-entregador",
+      "name": "App Entregador",
+      "mission": "Aceite de corridas, navegação e comprovantes para entregadores (Flutter)",
+      "topology": "stream-aligned",
+      "services": ["courier-app"],
+      "color": {
+        "bg": "#FFFBEB",
+        "text": "#B45309",
+        "border": "#FDE68A",
+        "accent": "#F59E0B"
+      }
+    }
+  ]
 }

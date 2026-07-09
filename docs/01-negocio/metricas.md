@@ -1,24 +1,26 @@
 ---
+status: active
+updated: '2026-07-09'
 id: metricas
 type: metrics
-status: draft
-created: 2026-07-09
-updated: 2026-07-09
 tags: []
 ---
-
 # Métricas
 
 ## North Star Metric
-(a única métrica que melhor captura o valor entregue ao cliente)
+**Entregas concluídas no prazo** — captura valor para cliente, estabelecimento e entregador.
 
 ## KPIs por área
-| Métrica | O que mede | Meta | Como coletar |
+| Métrica | O que mede | Meta MVP | Como coletar |
 |---|---|---|---|
-| (aquisição) | | | |
-| (ativação) | | | |
-| (retenção) | | | |
-| (receita) | | | |
+| Entregas no prazo (%) | Qualidade operacional | ≥ 92% | order-service + logistics-service |
+| Entregadores ativos/semana | Oferta de última milha | 50 na região piloto | logistics-service |
+| Estabelecimentos ativos | Lado oferta | 20 no piloto | merchant-service |
+| Pedidos concluídos/semana | Tração | 200 | order-service |
+| NPS cliente | Satisfação | ≥ 40 | pesquisa pós-entrega |
+| GMV | Volume transacionado | R$ 50k/mês piloto | payment-service |
 
 ## Cadência de acompanhamento
-(com que frequência você revisa e com quem)
+- **Diário:** entregas, pedidos, incidentes (squads operacionais).
+- **Semanal:** review de sprint + OKR-001 (Joana + tech-lead).
+- **Mensal:** unit economics e expansão regional.
