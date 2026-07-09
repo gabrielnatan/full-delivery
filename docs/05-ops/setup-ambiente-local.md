@@ -2,20 +2,19 @@
 id: setup-ambiente-local
 type: guide
 status: active
-tags: [dev, setup]
-created: 2026-07-09
-updated: 2026-07-09
+tags:
+  - dev
+  - setup
+created: 2026-07-09T00:00:00.000Z
+updated: '2026-07-09'
 ---
-
 # Setup do ambiente local
 
-> Como subir **o planejador** e **o app** na sua máquina. O kickoff é agnóstico de stack —
-> a forma de rodar o app depende da linguagem/framework que você escolher (registre a escolha
-> em um [ADR](../02-tecnico/decisions/)).
+> Como subir **o planejador** e os **serviços do monorepo** na sua máquina.
 
 ## 1. Planejador (gerenciador-projetos)
 
-O cockpit do projeto — lê e edita os `.md` de `docs/`.
+O cockpit do projeto — lê e edita os `docs/`.
 
 ```bash
 cd gerenciador-projetos
@@ -25,29 +24,55 @@ npm run dev        # http://localhost:4001
 
 Não depende do app: funciona mesmo antes de existir uma linha de código do produto.
 
-## 2. O app (a definir por projeto)
-
-A stack é decisão sua, registrada em `docs/02-tecnico/decisions/ADR-000-escolha-de-stack.md`.
-Depois de escolher, documente aqui os comandos reais. Um esqueleto comum:
+## 2. Monorepo (serviços)
 
 ```bash
-# exemplo genérico — troque pelos comandos da sua stack
-<instalar dependências>       # ex.: npm install / go mod download / bundle install
-<subir serviços de apoio>     # ex.: docker compose up -d (Postgres, Redis…)
-<rodar migrations>            # se aplicável
-<iniciar o app>               # ex.: npm run dev / go run ./... / rails s
+# na raiz do repositório
+npm install
+docker compose up -d    # Postgres local (quando docker-compose existir)
+
+# copiar variáveis de exemplo por serviço
+cp services/api-gateway/.env.example services/api-gateway/.env
+# repetir para cada serviço que for subir
+
+npm run dev:gateway     # api-gateway na porta 3000
 ```
 
-> Se você optar por **microsserviços/multi-repo**, crie um repo orquestrador próprio
-> (`docker compose` + um `make up`) e descreva-o aqui. O template não impõe esse padrão.
+Cada pasta em `services/` tem um `.env.example`. Copie para `.env` local — **nunca** commite `.env` com segredos reais.
+
+Variáveis globais opcionais na raiz: copie `.env.example` → `.env` (`NODE_ENV`, `LOG_LEVEL`).
+
+## 3. Variáveis de ambiente por serviço
+
+| Serviço | Porta | Variáveis obrigatórias |
+|---|---|---|
+| api-gateway | 3000 | `PORT`, `JWT_SECRET` |
+| identity-service | 3001 | `PORT`, `DATABASE_URL`, `JWT_SECRET` |
+| order-service | 3002 | `PORT`, `DATABASE_URL` |
+| merchant-service | 3003 | `PORT`, `DATABASE_URL` |
+| logistics-service | 3004 | `PORT`, `DATABASE_URL` |
+| payment-service | 3005 | `PORT`, `DATABASE_URL` |
+| client-app | 3100 | `PORT` |
+| courier-app | 3101 | `PORT` |
+
+**Notas:**
+
+- `JWT_SECRET` deve ser **o mesmo** em `api-gateway` e `identity-service`.
+- `DATABASE_URL` usa Postgres local (`localhost:5432`) com **schema isolado** por serviço (ex.: `?schema=identity`, `?schema=orders`).
+- Apps cliente (React/Flutter) não usam `DATABASE_URL` nem `JWT_SECRET` no servidor — autenticação via gateway.
+
+Exemplos completos: `services/<nome>/.env.example` e [services/README.md](../../services/README.md).
 
 ## Pré-requisitos
 
-- **Git** e **Node.js** (para o planejador).
-- Ferramentas da stack escolhida (a definir no ADR de stack).
+- **Git** e **Node.js** (planejador + monorepo).
+- **Docker** (Postgres local via Compose).
+- Ferramentas da stack: NestJS, React, Flutter conforme [tech-stack.md](../02-tecnico/tech-stack.md).
 
 ## Referências
 
 - [runbook.md](runbook.md) — operação geral e troubleshooting
-- [../02-tecnico/tech-stack.md](../02-tecnico/tech-stack.md) — a stack e o porquê
-- [../02-tecnico/decisions/ADR-000-escolha-de-stack.md](../02-tecnico/decisions/ADR-000-escolha-de-stack.md)
+- [padrao-codigo-monorepo.md](padrao-codigo-monorepo.md) — ESLint, Prettier e TypeScript na raiz
+- [../02-tecnico/tech-stack.md](../02-tecnico/tech-stack.md) — stack e motivação
+- [../02-tecnico/monorepo.md](../02-tecnico/monorepo.md) — estrutura de pastas
+- [vinculo-git-tasks.md](vinculo-git-tasks.md) — branches e PRs por STORY-XXX
